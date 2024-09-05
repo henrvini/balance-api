@@ -1,0 +1,11 @@
+{
+  "name": "balance-api",
+  "version": "1.0.0",
+  "description": "This API was developed for the purpose of technical assignment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vinicius Rodrigues",
+  "license": "ISC"
+}
