@@ -1,10 +1,8 @@
 import { Router } from "express";
-import { getBalance, reset } from "../controllers/accountController";
+import { getBalance } from "../controllers/accountController";
 import { validateAccountId } from "../middleware/validateAccountId";
 
 const router = Router();
-
-router.post("/reset", reset);
 
 router.get("/balance", validateAccountId, getBalance);
 

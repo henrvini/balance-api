@@ -1,14 +1,5 @@
 import { Request, Response } from "express";
-import { getAccountById, createFakeAccount } from "../services/accountService";
-
-export const reset = async (req: Request, res: Response) => {
-    try {
-        createFakeAccount();
-        res.status(200).json("OK");
-    } catch (err: unknown) {
-        res.status(500).json({ msg: err instanceof Error ? err.message : "Unknown error" });
-    }
-};
+import { getAccountById } from "../services/accountService";
 
 export const getBalance = async (req: Request, res: Response) => {
     try {
