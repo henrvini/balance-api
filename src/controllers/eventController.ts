@@ -3,6 +3,7 @@ import { deposit } from "../services/handlers/depositHandler";
 import { withdraw } from "../services/handlers/withdrawHandler";
 import { EventType } from "../dto/Event";
 import { isNegativeResponse } from "../utils/utils";
+import { transfer } from "../services/handlers/transferHandler";
 
 export const eventHandler = async (req: Request, res: Response) => {
     try {
@@ -11,6 +12,7 @@ export const eventHandler = async (req: Request, res: Response) => {
         const strategies = {
             [EventType.deposit]: deposit,
             [EventType.withdraw]: withdraw,
+            [EventType.transfer]: transfer,
         };
 
         const result = strategies[type](req.body);

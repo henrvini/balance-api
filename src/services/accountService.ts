@@ -11,3 +11,7 @@ export const updateAccount = (account: Account): Account => {
 
     return account;
 };
+
+export const checkFundsForTransaction = (currentFunds: number, transferAmount: number): boolean => {
+    return Math.sign(currentFunds - transferAmount) !== -1;
+};
