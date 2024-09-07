@@ -6,7 +6,4 @@ const router = Router();
 
 router.get("/balance", validateAccountId, getBalance);
 
-// TODO: POST deposit, withdraw, transfer and new account
-router.get("/event");
-
 export default router;
