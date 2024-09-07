@@ -22,7 +22,7 @@ export const eventHandler = async (req: Request, res: Response) => {
         if (negativeResponse) {
             res.status(result.statusCode).json(0);
         } else {
-            res.status(200).json(result);
+            res.status(201).json(result);
         }
     } catch (err: unknown) {
         res.status(500).json({ msg: err instanceof Error ? err.message : "Unknown error" });

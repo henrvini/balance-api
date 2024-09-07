@@ -9,22 +9,22 @@ export const transfer = ({
     const originAccount = getAccountById(origin);
     const destinationAccount = getAccountById(destination);
 
-    if (!originAccount || !destinationAccount) {
+    if (!originAccount) {
         return { statusCode: 404, error: "Account not found" };
-    } else {
-        if (checkFundsForTransaction(originAccount.balance, amount)) {
-            const newOriginAccountBalance = updateAccount({
-                id: origin,
-                balance: originAccount.balance - amount,
-            });
-
-            const newDestinationAccountBalance = updateAccount({
-                id: destination,
-                balance: destinationAccount.balance + amount,
-            });
-
-            return { origin: newOriginAccountBalance, destination: newDestinationAccountBalance };
-        }
-        return { statusCode: 403, error: "Insufficient balance" };
     }
+
+    if (checkFundsForTransaction(originAccount.balance, amount)) {
+        const newOriginAccountBalance = updateAccount({
+            id: origin,
+            balance: originAccount.balance - amount,
+        });
+
+        const newDestinationAccountBalance = updateAccount({
+            id: destination,
+            balance: destinationAccount ? destinationAccount.balance + amount : amount,
+        });
+
+        return { origin: newOriginAccountBalance, destination: newDestinationAccountBalance };
+    }
+    return { statusCode: 403, error: "Insufficient balance" };
 };
