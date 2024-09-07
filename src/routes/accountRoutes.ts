@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getBalance } from "../controllers/accountController";
-import { validateAccountId } from "../middleware/validateAccountId";
+import { validateAccountId } from "../middleware/validators";
 
 const router = Router();
 
