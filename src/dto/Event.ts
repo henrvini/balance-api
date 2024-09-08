@@ -1,9 +1,9 @@
 import { Account } from "../models/Account";
 
 export enum EventType {
-    deposit = "deposit",
-    withdraw = "withdraw",
-    transfer = "transfer",
+    DEPOSIT = "deposit",
+    WITHDRAW = "withdraw",
+    TRANSFER = "transfer",
 }
 
 export interface DepositDTO {
@@ -23,11 +23,6 @@ export interface TransferDTO {
     origin: string;
     amount: number;
     destination: string;
-}
-
-export interface NegativeResponseDTO {
-    statusCode: number;
-    error: string;
 }
 
 export type DepositResponseDTO = { destination: Account };

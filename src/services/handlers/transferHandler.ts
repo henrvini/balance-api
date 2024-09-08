@@ -1,30 +1,28 @@
-import { NegativeResponseDTO, TransferDTO, TransferResponseDTO } from "../../dto/Event";
+import { TransferDTO, TransferResponseDTO } from "../../dto/Event";
+import { HttpError, HttpErrorMessage } from "../../utils/utils";
 import { updateAccount, getAccountById, checkFundsForTransaction } from "../accountService";
 
-export const transfer = ({
-    origin,
-    destination,
-    amount,
-}: TransferDTO): TransferResponseDTO | NegativeResponseDTO => {
+export const transfer = ({ origin, destination, amount }: TransferDTO): TransferResponseDTO => {
     const originAccount = getAccountById(origin);
     const destinationAccount = getAccountById(destination);
 
     if (!originAccount) {
-        return { statusCode: 404, error: "Account not found" };
+        throw new HttpError(HttpErrorMessage.ACCOUNT_NOT_FOUND, 404);
     }
 
-    if (checkFundsForTransaction(originAccount.balance, amount)) {
-        const newOriginAccountBalance = updateAccount({
-            id: origin,
-            balance: originAccount.balance - amount,
-        });
-
-        const newDestinationAccountBalance = updateAccount({
-            id: destination,
-            balance: destinationAccount ? destinationAccount.balance + amount : amount,
-        });
-
-        return { origin: newOriginAccountBalance, destination: newDestinationAccountBalance };
+    if (!checkFundsForTransaction(originAccount.balance, amount)) {
+        throw new HttpError(HttpErrorMessage.INSUFFICIENT_BALANCE, 422);
     }
-    return { statusCode: 403, error: "Insufficient balance" };
+
+    const newOriginAccountBalance = updateAccount({
+        id: origin,
+        balance: originAccount.balance - amount,
+    });
+
+    const newDestinationAccountBalance = updateAccount({
+        id: destination,
+        balance: destinationAccount ? destinationAccount.balance + amount : amount,
+    });
+
+    return { origin: newOriginAccountBalance, destination: newDestinationAccountBalance };
 };

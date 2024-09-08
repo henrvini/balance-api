@@ -1,7 +1,14 @@
-import { DepositResponseDTO, NegativeResponseDTO, WithdrawResponseDTO } from "../dto/Event";
+export class HttpError extends Error {
+    public statusCode: number;
 
-export const isNegativeResponse = (
-    result: DepositResponseDTO | WithdrawResponseDTO | NegativeResponseDTO
-): result is NegativeResponseDTO => {
-    return (result as NegativeResponseDTO).error !== undefined;
-};
+    constructor(msg: string, statusCode: number) {
+        super(msg);
+        this.statusCode = statusCode;
+        Error.captureStackTrace(this, this.constructor);
+    }
+}
+
+export enum HttpErrorMessage {
+    INSUFFICIENT_BALANCE = "Insufficient balance",
+    ACCOUNT_NOT_FOUND = "Account not found",
+}

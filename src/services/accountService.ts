@@ -1,4 +1,4 @@
-import { accounts } from "../data/accountData";
+import { accounts } from "../data/inMemoryDb";
 import { Account } from "../models/Account";
 
 export const getAccountById = (accountId: string): Account | undefined => {
