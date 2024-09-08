@@ -2,10 +2,14 @@
     "name": "balance-api",
     "version": "1.0.0",
     "description": "This API was developed for the purpose of technical assignment.",
-    "main": "./src/index.js",
+    "main": "dist/index.js",
     "scripts": {
-        "start": "ts-node src/index.ts",
-        "build": "tsc"
+        "start": "node dist/index.js",
+        "build": "tsc",
+        "dev": "ts-node src/index.ts",
+        "test": "jest",
+        "watch": "jest --watch",
+        "coverage": "jest --coverage"
     },
     "author": "Vinicius Rodrigues",
     "license": "ISC",
@@ -16,7 +20,10 @@
     },
     "devDependencies": {
         "@types/express": "^4.17.21",
+        "@types/jest": "^29.5.12",
         "@types/node": "^22.5.4",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.2.5",
         "ts-node": "^10.9.2",
         "typescript": "^5.5.4"
     }

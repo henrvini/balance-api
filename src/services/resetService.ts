@@ -1,5 +1,5 @@
 import { accounts } from "../data/inMemoryDb";
 
-export const cleanUppAllAccounts = (): void => {
+export const cleanUpAllAccounts = (): void => {
     accounts.clear();
 };
