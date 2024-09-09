@@ -1,7 +1,12 @@
 ﻿# Balance API
 This API provides basic functionality for managing banking accounts, supporting operations like deposit, withdraw, and transfer between accounts
 
-# How to run
+# Deployment
+The Balance API is deployed and available in production on Railway.app, offering a reliable environment for real-time operations.
+
+Link: https://balance-api-production.up.railway.app
+
+# Development
 Install Modules:
 ```sh
 npm install
